@@ -181,6 +181,7 @@ endif
 " start with no search highlightsng
 set nohls
 
+let mapleader = ","
 
 " Mappings
 
