@@ -106,25 +106,20 @@ if has("autocmd") && exists("+omnifunc")
 	autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
 endif
 
-set t_Co=256 " beautiful colors please
+" beautiful colors please
+set t_Co=256
 
 " Set terminal encoding equal to actual encoding if empty
 if &tenc == ""
-    let &tenc = &enc
+	let &tenc = &enc
 endif
 
 
 " some coloring brought from conanperlgray
 
 " Console
-"hi Normal ctermfg=White ctermbg=235
-"hi Search ctermfg=Black ctermbg=Green cterm=NONE
-"hi Visual ctermbg=255
-"hi Cursor ctermfg=Black ctermbg=Green cterm=bold
-"hi StatusLine ctermbg=white ctermfg=blue
 set cul " highlight current line
-"hi cursorline gui=underline ctermbg=233
-"hi Comment ctermfg=250 " gray
+
 " change status line based on mode
 if version >= 700
 	au InsertEnter * hi StatusLine ctermbg=black ctermfg=green
@@ -183,12 +178,10 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 
-" start with no search highlighting, I don't wanna have highlighted strings that pertaing to searchs in other
-" files
+" start with no search highlightsng
 set nohls
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " Mappings
 
 " tab creation/navigation
@@ -201,19 +194,12 @@ map <c-left> :tabnext<return>
 map <c-l> :tabnext<return>
 map <c-right> :tabprevious<return>
 
-" vimtip 86: evitar que undo 'u' deshaga todas las lineas que escribimos de un
-" tirón. No funca para lineas autoinsertadas gracias a textwidth, ahí deshace de
-" a párrafos, pero es ideal para editar código donde uno presiona <enter> antes
-" de terminar la linea.
-" al instalar vim-7.3.102-1 esto dejó de andar, me metía 2 saltos de linea con cada ENTER
-"inoremap <return> <return>
 
-" 'j' y 'k' en modo comando sirven para moverse entre lineas. Estos mapeos
-" permiten teclas más intuitivas para hacer scroll de pantalla y moviendo el cursor a la vez
+" scroll up/down one line keeping current position
 map <C-j> <C-e>j
 map <C-k> <C-y>k
 
-" reformatee hasta el fin del párrafo
+" reformat to end of paragraph
 map Q gq}
 
 " Comportamiento less-like
