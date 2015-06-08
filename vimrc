@@ -203,11 +203,13 @@ map <C-k> <C-y>k
 " reformat to end of paragraph
 map Q gq}
 
-" Comportamiento less-like
-" este anula el mapeo por omisión para 'q' que es grabar una macro. OJO!
+" less-like behaviour
+nmap <space> <PageDown>
+nmap <backspace> <PageUp>
+
+" I like to quit with q key and I don't use macros
+" TODO remap macro recording to something else
 map q :q<enter>
-"map <space> <C-f>
-"map <backspace> <C-b>
 
 " Indenting
 vmap <tab> >>
