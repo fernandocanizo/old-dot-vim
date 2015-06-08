@@ -1,10 +1,5 @@
-" .vimrc
-" Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/
-" Created: 2014.11.08
-" 2014.11.08 comented out all relating to autocompletion in order to test youcompleteme
+" Author: Fernando L. Canizo - http://flc.muriandre.com/
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-" Settings
 
 set nocompatible " Use Vim defaults (much better!)
 filetype off
