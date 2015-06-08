@@ -50,10 +50,6 @@ Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
 " lean & mean status/tabline for vim that's light as air
 Plugin 'https://github.com/bling/vim-airline.git'
 
-" a good one for Lisp and newLisp, but also maybe good for Javascript
-Plugin 'https://github.com/amdt/vim-niji.git'
-
-
 " to show difference on files already in git repo
 Plugin 'https://github.com/airblade/vim-gitgutter.git'
 
