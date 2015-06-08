@@ -93,14 +93,9 @@ Plugin 'mustache/vim-mustache-handlebars'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-
 " Syntastic configuration
 " use tidy-html5
 let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy5'
-
-" vim-niji configuration
-let g:niji_matching_filetypes = ['lisp', 'ruby', 'python', 'javascript', 'newlisp']
-
 
 
 " javascript-libraries-syntax configuration as I don't use all the libraries it provides syntax for
