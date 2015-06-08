@@ -212,10 +212,6 @@ map <c-t> <esc>:tabnew<return>
 map <c-h> :tabprevious<return>
 map <c-l> :tabnext<return>
 
-" TODO map arrow keys, this doesn't work
-map <c-Left> :tabnext<return>
-map <c-Right> :tabprevious<return>
-
 
 " scroll up/down one line keeping current position
 map <C-j> <C-e>j
