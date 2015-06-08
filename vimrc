@@ -55,6 +55,8 @@ call vundle#begin()
 	" 2015.03.06 syntax for Mustache and Handlebars templates
 	Plugin 'mustache/vim-mustache-handlebars'
 
+	Plugin 'https://github.com/majutsushi/tagbar'
+
 call vundle#end()
 
 " Syntastic configuration
