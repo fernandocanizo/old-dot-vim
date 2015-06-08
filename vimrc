@@ -53,9 +53,6 @@ Plugin 'https://github.com/bling/vim-airline.git'
 " to show difference on files already in git repo
 Plugin 'https://github.com/airblade/vim-gitgutter.git'
 
-" to visually show indents
-Plugin 'https://github.com/nathanaelkane/vim-indent-guides.git'
-
 " 2015.03.05
 " visualize your undo tree
 " but it says it's beta, so I'll leave it commented here to check it later 
