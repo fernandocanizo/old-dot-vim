@@ -126,53 +126,71 @@ if version >= 700
 	au InsertLeave * hi StatusLine ctermbg=white ctermfg=blue
 endif
 
-set laststatus=2 " always show status line
-"set statusline=%58(%-15t\ \ %Y%M\ \ %h\ \ %v,%l\ of\ %L\ \ %P%)
+" always show status line
+set laststatus=2
 set statusline=[LINE=%l]\ [COL=%v]\ %f%m%r%h%w\ [FORMAT=%{&ff}]\ [FILETYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [%p%%]\ [LINES=%L]
-set nowrapscan " don't wrap around file on searches
-set title " show xterm title
+
+" don't wrap around file on searches
+set nowrapscan
+
+" show xterm title
+set title
+
+" do not scroll as I type, it's annoying
 set noincsearch
-set bs=2 " allow backspacing over everything in insert mode
-set nobackup " don't keep a backup file
-set viminfo='20,\"50 " read/write a .viminfo file, don't store more
-                     " than 50 lines of registers
-set history=50 " keep 50 lines of command line history
-set ruler " show the cursor position all the time
-set textwidth=0 " I change this for source code files
+
+" allow backspacing over everything in insert mode
+set bs=2
+
+" don't keep a backup file
+set nobackup
+
+" read/write a .viminfo file, don't store more than 50 lines of registers
+set viminfo='20,\"50
+
+" keep 50 lines of command line history
+set history=50
+
+" show the cursor position all the time
+set ruler
+
+" I change this for source code files
+set textwidth=0
 set noautoindent
-set wrap " this doesn't change the text, only hoy it's displayed
-set ignorecase " ignore case in searches
-set wildmenu " better and nice command-line completion
-set shiftwidth=4 " Number of spaces to insert when indenting.
+
+" this doesn't change the text, only hoy it's displayed
+set wrap
+
+" ignore case in searches
+set ignorecase
+
+" better and nice command-line completion
+set wildmenu
+
 " Number of spaces to show for a tab (i.e. for display purposes, doesn't
 " actually change the contents of the file). Note that if shiftwidth is
 " not the same as tabstop, vim will use spaces to make up the
 " difference when indenting with the >> and == indentation commands.
+set shiftwidth=4
 set tabstop=4
 set noexpandtab " Use tabs, not spaces
+
+" no annoying sounds or visual flashes
 set noerrorbells
-" vim was refusing to execute system commands, so i put this
-"set shell=bash " it's working again
+set visualbell
+
 set formatoptions=tcq2
+
 " Place only a single space between sentences when joinging lines.
 set nojoinspaces
 
 " highlight searches
 set hlsearch
 
-" no annoying sounds
-set visualbell
-
-set pastetoggle=<F5>
-
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
 	" Background must be set for syntax on to have an effect
 	set background=dark
-	" this color schema gives better visibility for pound comments in a black background
-" colorscheme elflord " I'm tired of the darkblues, can't see it on dark bakground
-" colorscheme koehler
-	" let's see how goes my perl colouring for other files
 	colorscheme conanperlgray
     syntax on
 endif
@@ -190,15 +208,17 @@ let mapleader = ","
 map <c-t> <esc>:tabnew<return>
 " switch to left or right ctrl-h ctrl-l
 map <c-h> :tabprevious<return>
-map <c-left> :tabnext<return>
-
 map <c-l> :tabnext<return>
-map <c-right> :tabprevious<return>
+
+" TODO map arrow keys, this doesn't work
+map <c-Left> :tabnext<return>
+map <c-Right> :tabprevious<return>
 
 
 " scroll up/down one line keeping current position
 map <C-j> <C-e>j
 map <C-k> <C-y>k
+
 
 " reformat to end of paragraph
 map Q gq}
@@ -207,13 +227,15 @@ map Q gq}
 nmap <space> <PageDown>
 nmap <backspace> <PageUp>
 
-" I like to quit with q key and I don't use macros
-" TODO remap macro recording to something else
-map q :q<enter>
+
+" quit
+map <Leader>q :q<enter>
+
 
 " Indenting
 vmap <tab> >>
 vmap <S-tab> <<
+
 
 " regexp: cannot set very magic permanently, so this mappings are a work around, they set very magic
 " also I set hls everytime I search
@@ -224,15 +246,19 @@ nnoremap # :set hls<enter>#\v
 nnoremap * :set hls<enter>*\v
 cnoremap s/ s/\v
 
-" F1 comentar lineas
+" F1 shell-like line commenting
 map <F1> 0i#<esc>j
 imap <F1> <esc>0i#<esc>j
-" F2 descomentar lineas solo si tienen un # al comienzo
+
+" F2 shell-like line uncommenting
 map <F2> :s/^#//e<return>:noh<return>j
 imap <F2> <esc>:s/^#//e<return>:noh<return>j
 
+" line separator
 map <F3> o<esc>a—<esc>168.
 imap <F3> <esc>0a—<esc>168.o
+
+set pastetoggle=<F5>
 
 " toggle cursor line highlighting
 map <F6> :set cursorline!<enter>:set cursorline?<enter>
@@ -244,20 +270,16 @@ map <F7> :set hls!<enter>:set hls?<enter>
 map <F8> <esc>:r !date<enter>kJ$
 imap <F8> <esc>:r !date<enter>A<space>
 
-" shift+insert copia desde XA_PRIMARY (mouse selection), este copia de desde XA_SECONDARY (clipboard)
-" equivale a lo que en otros editores es CTRL-V
-" usando la nomenclatura de :h key-notation no funca
-"map <C-Insert> "+gP
-map [2^ "+gP
+" shift+insert copies from XA_PRIMARY (mouse selection)
+" this mapping copies from XA_SECONDARY (clipboard)
+" equivalent to CTRL-V in other editors
+map <Leader>p "+gP
+
 
 " by albertito@lugfi: hl in red spaces after text on EOL
 highlight WhiteSpaceEOL ctermbg=red guibg=red
 match WhiteSpaceEOL /\v\s+$/
 
-" by conan@lugmen: hl in red spaces at the beginning (in code there should be only tabs at the beginning)
-"highlight WhiteSpaceBOL ctermbg=red guibg=red
-"match WhiteSpaceBOL /\v^[ ]+/
-" didn't worked, look at it later (2012.08.03)
 
 " mark any tabs that are not at the beginning of the line (indentation) as an error:
 match errorMsg /[^\t]\zs\t\+/
@@ -265,8 +287,9 @@ match errorMsg /[^\t]\zs\t\+/
 
 " Filetype stuff
 
-" Cuando se edite un archivo saltar a la posición donde quedamos la última vez
+" jump to last position we were editing on this file
 autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
+
 
 " Open files completely unfolded
 au BufRead * normal zR
