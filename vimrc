@@ -7,83 +7,55 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
+	" Keep Plugin commands between vundle#begin/end.
 
-" Keep Plugin commands between vundle#begin/end.
+	" YouCompleteMe is a little bit stupid on Javascript, but with tern_for_vim it becomes awesome
+	" (says oli.me.uk but I don't have it working yet)
+	" 2015.05.30 not very happy with it, uses >250 MB RAM, need to find an option
+	Plugin 'Valloric/YouCompleteMe'
 
-" YouCompleteMe is a little bit stupid on Javascript, but with tern_for_vim it becomes awesome
-" (says oli.me.uk but I don't have it working yet)
-" 2015.05.30 lo deshabilito porque usa >2500 MB RAM
-" Y al fin y al cabo era una bosta completando
-Plugin 'Valloric/YouCompleteMe'
+	" use it by calling :Tern<tab>
+	" for example TernDef will tell you the link on mozilla developer website
+	Plugin 'https://github.com/marijnh/tern_for_vim.git'
 
-" use it by calling :Tern<tab>
-" for example TernDef will tell you the link on mozilla developer website
-Plugin 'https://github.com/marijnh/tern_for_vim.git'
+	Plugin 'SirVer/ultisnips'
 
-Plugin 'SirVer/ultisnips'
+	" Syntastic is a syntax checking plugin that runs files through external syntax checkers and displays any
+	" resulting errors to the user
+	Plugin 'Syntastic'
 
-" Syntastic is a syntax checking plugin that runs files through external syntax checkers and displays any
-" resulting errors to the user
-Plugin 'Syntastic'
+	" OMNI Completion based on the current syntax highlights
+	Plugin 'SyntaxComplete'
 
-" 2015.03.27 let's see if this is the one messing so bad with colors, let's disable it for a while
-" -> defintely this was the one to blame for my too colorful vim. I'll leave this around so I remember to not
-" use it again in the future
-" YAJS doesn't appear for installation, so I use it's git repo
-" Yet Another JavaScript Syntax for Vim
-" Plugin 'https://github.com/othree/yajs.vim.git'
-" 2015.04.29 on the other hand, this one's updated to ES6
+	" syntax support for popular javascript libraries
+	Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
 
-" OMNI Completion based on the current syntax highlights
-Plugin 'SyntaxComplete'
+	" lean & mean status/tabline for vim that's light as air
+	Plugin 'https://github.com/bling/vim-airline.git'
 
-" syntax support for popular javascript libraries
-Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
+	" to show difference on files already in git repo
+	Plugin 'https://github.com/airblade/vim-gitgutter.git'
 
-" lean & mean status/tabline for vim that's light as air
-Plugin 'https://github.com/bling/vim-airline.git'
+	" quoting/parenthesizing made simple
+	Plugin 'https://github.com/tpope/vim-surround.git'
 
-" to show difference on files already in git repo
-Plugin 'https://github.com/airblade/vim-gitgutter.git'
+	" Git wrapper, use it with :G<tab>
+	Plugin 'https://github.com/tpope/vim-fugitive.git'
 
-" 2015.03.05
-" visualize your undo tree
-" but it says it's beta, so I'll leave it commented here to check it later 
-" Plugin 'https://github.com/sjl/gundo.vim.git'
+	" pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim
+	" modernizes this with the following additions:
+	" Unicode character names: U+00A9 COPYRIGHT SYMBOL
+	" Vim digraphs (type after <C-K> to insert the character): Co, cO
+	" Emoji codes: :copyright:
+	" HTML entities: &copy;
+	Plugin 'https://github.com/tpope/vim-characterize.git'
 
-" 2015.03.05
-" another one to check later (too much stuff installed already)
-" looks nice, but I'm used to search and replace
-"Plugin 'https://github.com/terryma/vim-multiple-cursors.git'
+	Plugin 'https://github.com/tpope/vim-jdaddy.git'
 
-" tpope es un grosso de vim!
+	" 2015.03.06 syntax for Mustache and Handlebars templates
+	Plugin 'mustache/vim-mustache-handlebars'
 
-" quoting/parenthesizing made simple
-Plugin 'https://github.com/tpope/vim-surround.git'
-
-" Git wrapper, use it with :G<tab>
-Plugin 'https://github.com/tpope/vim-fugitive.git'
-
-" pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim
-" modernizes this with the following additions:
-" Unicode character names: U+00A9 COPYRIGHT SYMBOL
-" Vim digraphs (type after <C-K> to insert the character): Co, cO
-" Emoji codes: :copyright:
-" HTML entities: &copy;
-Plugin 'https://github.com/tpope/vim-characterize.git'
-
-" 2015.03.05
-" may be useful in the future, now that I'm starting to use more mongodb
-"Plugin 'https://github.com/tpope/vim-jdaddy.git'
-
-" 2015.03.06 syntax for Mustache and Handlebars templates
-Plugin 'mustache/vim-mustache-handlebars'
-
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call vundle#end()
 
 " Syntastic configuration
 " use tidy-html5
@@ -101,9 +73,10 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 
 " detect file types, autoload associated plugin and indent file for detected file type
-filetype plugin indent on    " required by Vundle
+" required by Vundle
+filetype plugin indent on
 
-"Plugin 'SirVer/ultisnips' configuration
+" SirVer/ultisnips configuration
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 " This didn't work
 let g:UltiSnipsExpandTrigger = '<F12>'
