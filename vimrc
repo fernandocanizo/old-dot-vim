@@ -199,9 +199,11 @@ endif
 " start with no search highlightsng
 set nohls
 
-let mapleader = ","
 
 " Mappings
+
+" explicitly set mapleader to \
+let mapleader = "\\"
 
 " tab creation/navigation
 " new tab ctrl-t
