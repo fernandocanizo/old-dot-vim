@@ -336,8 +336,6 @@ au! BufRead,BufNewFile *.nl call MapeosNewlisp()
 
 au! FileType php call MapeosPHP()
 
-au! FileType javascript call MapeosJavaScript()
-
 au! FileType lua call MapeosLua()
 
 au! FileType sql call MapeosSQL()
@@ -599,39 +597,6 @@ function MapeosPHP()
 	set smartcase
 
 	set omnifunc=phpcomplete#CompletePHP
-
-	call SpaceHighlightor()
-endfunction
-
-function MapeosJavaScript()
-	" Configuración del autocompletado inteligente
-	set omnifunc=javascriptcomplete#CompleteJS
-
-	" F1 comentar lineas
-	map <F1> 0i//<esc>j
-	imap <F1> <esc>0i//<esc>j
-	" F2 descomentar lineas solo si tienen // al comienzo
-	map <F2> :s/^\/\///e<return>:noh<return>j
-
-	" F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i/<esc>79.yyp0O//<space>
-    imap <F3> <esc>o<esc>i/<esc>79.yyp0O//<space>
-    " F4 insertar datos
-    map <F4> <esc>1GO// Creation Date: <esc>:r! date "+\%Y.\%m.\%d"<return><esc><esc>kJo// Author: Fernando L. Canizo - http://flc.muriandre.com/<esc>o<esc>0xxo<return><esc>kO"use strict";<enter><enter>
-
-    set noexpandtab " use TAB character when TAB is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-
-    set textwidth=0
-	set smartindent
-    " sería copado ponerlos de nuevo al comentar
-    set nowrap
-	set smartcase
-    " uso color cyan para los comentarios
-    "hi Comment ctermfg=11
-    colorscheme conanperlgray
 
 	call SpaceHighlightor()
 endfunction
