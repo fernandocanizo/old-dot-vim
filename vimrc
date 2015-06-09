@@ -231,8 +231,9 @@ nmap <space> <PageDown>
 nmap <backspace> <PageUp>
 
 
-" quit
-map <Leader>q :q<enter>
+" quit and macro recording
+nnoremap <Leader>r q
+nmap q :q<enter>
 
 
 " Indenting
