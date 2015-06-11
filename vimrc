@@ -212,10 +212,15 @@ let mapleader = "\\"
 
 " tab creation/navigation
 " new tab ctrl-t
-map <c-t> <esc>:tabnew<return>
+nmap <c-t> <esc>:tabnew<return>
 " switch to left or right ctrl-h ctrl-l
-map <c-h> :tabprevious<return>
-map <c-l> :tabnext<return>
+nmap <Leader>h :tabprevious<return>
+nmap <Leader>l :tabnext<return>
+
+
+" buffer navigation
+nmap <c-h> :bnext<enter>
+nmap <c-l> :bprevious<enter>
 
 
 " scroll up/down one line keeping current position
