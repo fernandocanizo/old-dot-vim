@@ -305,10 +305,6 @@ au BufRead * normal zR
 
 au! FileType json call MapeosJson()
 
-" No existe el filetype text, so I create it
-au! BufRead,BufNewFile *.txt set filetype=text
-au! FileType text call MapeosTXT()
-
 au! BufRead,BufNewFile *.ctodo set filetype=ctodo
 au! FileType ctodo call MapeosConanTodo()
 
@@ -840,12 +836,6 @@ function MapeosSQL()
     map <F4> <esc>1GO-- Creation Date: <esc>:r! LC_TIME=us date -R<return><esc><esc>kJo-- Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/<return>
 endfunction
 
-function MapeosTXT()
-	set textwidth=80
-	" estaría bueno tener spelling en un mapeo de teclas, pero es muy molesto tenerlo permanente para cualquier txt
-"	set spell
-"	set spelllang=en,es
-endfunction
 
 function MapeosRuby()
 	" F1 comentar lineas
