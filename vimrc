@@ -16,7 +16,7 @@ call vundle#begin()
 
 	" use it by calling :Tern<tab>
 	" for example TernDef will tell you the link on mozilla developer website
-	Plugin 'https://github.com/marijnh/tern_for_vim.git'
+"	Plugin 'https://github.com/marijnh/tern_for_vim.git'
 
 	Plugin 'SirVer/ultisnips'
 
@@ -321,8 +321,6 @@ au! FileType mail call MapeosMail()
 
 au! FileType vim call MapeosVimRC()
 
-au! FileType python call MapeosPython()
-
 au! FileType perl call MapeosPerl()
 
 au! FileType html call MapeosHTML()
@@ -439,47 +437,6 @@ function MapeosVimRC()
     imap <F2> <esc>:s/^"//e<return>:noh<return>j
     " mapear <F3> para que cree un comentario estructurado
     map <F3> <esc>o"<esc>a=<esc>64.<esc>yypO" 
-endfunction
-
-function MapeosPython()
-	" Configuración del autocompletado inteligente (el de Python necesita un Vim
-	" compilado contra las librerías de Python para funcionar)
-	set omnifunc=pythoncomplete#Complete
-
-    " F1 comentar lineas
-    map <F1> 0i#<esc>j
-    imap <F1> <esc>0i#<esc>j
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^#//e<return>:noh<return>j
-    imap <F2> <esc>:s/^#//e<return>:noh<return>j
-    " F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i#<esc>79.yyp0O#<space>
-    imap <F3> <esc>o<esc>i#<esc>79.yyp0O# 
-    " shift-F3 comentario para separar menos llamativo
-    map [25~ o#<esc>a-<esc>78.j
-    " F4 insertar datos
-    map <F4> <esc>1GO#! /usr/bin/env python<return># -*- coding: utf8 -*-<return># Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJo# Author: Fernando L. Canizo - http://flc.muriandre.com/<esc>o<esc>
-
-    set noexpandtab " use TAB character when TAB is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-
-	syntax on
-	set background=dark
-	autocmd BufRead *.py set smartindent
-"	cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-    set textwidth=0
-    set autoindent
-    " sería copado ponerlos de nuevo al comentar
-    set nowrap
-    " recomience búsqueda desde el ppio. si es necesario
-    set wrapscan
-    " uso color cyan para los comentarios
-    "hi Comment ctermfg=11
-
-	call SpaceHighlightor()
 endfunction
 
 
