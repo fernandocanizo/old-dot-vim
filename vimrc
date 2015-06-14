@@ -313,8 +313,6 @@ au! BufRead,BufNewFile *.fish set filetype=fish
 " And the entry to read the syntax file is needed too
 au! Syntax fish source $HOME/.vim/syntax/fish.vim
 
-au! FileType sh call MapeosShell()
-
 au! FileType man call MapeosMan()
 
 au! FileType mail call MapeosMail()
@@ -377,33 +375,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !mv <afile> <afile>:r
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-" Funciones
-
-" TODO: revisar el resto de las funciones de mapeo y setear: textwidth, indenting, wrapping y F1 y F2
-
-function MapeosShell()
-	" F1 comentar lineas
-    map <F1> 0i#<esc>j
-    imap <F1> <esc>0i#<esc>j
-
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^#//e<return>:noh<return>j
-    imap <F2> <esc>:s/^#//e<return>:noh<return>j
-
-    " F3 separador
-    map <F3> o<esc>i#<esc>a-<esc>78.
-    imap <F3> <esc>o<esc>i#<esc>a-<esc>78.
-
-	" F4 cabecera
-	map <F4> ggO#!/bin/bash<enter># Creation date:<esc>:r !date "+\%Y.\%m.\%d"<enter>kJo# by Fernando L. Canizo - http://flc.muriandre.com/<enter><enter># exit if any statement returns false value (can't use $? from now on)<enter>set -o errexit<enter># exit if variable not set<enter>set -o nounset<enter># uncomment to debug<enter>#set -x<enter>
-
-	imap <F4> <esc>ggO#!/bin/bash<enter># Creation date:<esc>:r !date -R <enter>kJo# by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter># exit if any statement returns false value (can't use $? from now on)<enter>set -o errexit<enter># exit if variable not set<enter>set -o nounset<enter># uncomment to debug<enter>#set -x<enter>
-
-	set textwidth=0
-endfunction " MapeosShell
 
 
 function MapeosMan()
