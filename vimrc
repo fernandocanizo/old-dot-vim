@@ -313,8 +313,6 @@ au! BufRead,BufNewFile *.fish set filetype=fish
 " And the entry to read the syntax file is needed too
 au! Syntax fish source $HOME/.vim/syntax/fish.vim
 
-au! FileType vim call MapeosVimRC()
-
 au! FileType perl call MapeosPerl()
 
 au! FileType html call MapeosHTML()
@@ -371,26 +369,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !mv <afile> <afile>:r
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
-
-
-function MapeosVimRC()
-    " para cuando edito este archivo
-    " comentarios a lo vim
-    " FIX: no está funcionando!
-    set comments="b:\""
-    set textwidth=110
-    set tabstop=4
-    set shiftwidth=4
-    set noexpandtab
-    " mapear F1 para que comente una linea existente
-    imap <F1> <esc>0i"<esc>j
-    map <F1> 0i"<esc>j
-	" F2 descomenta
-    map <F2> :s/^"//e<return>:noh<return>j
-    imap <F2> <esc>:s/^"//e<return>:noh<return>j
-    " mapear <F3> para que cree un comentario estructurado
-    map <F3> <esc>o"<esc>a=<esc>64.<esc>yypO" 
-endfunction
 
 
 function MapeosPerl()
