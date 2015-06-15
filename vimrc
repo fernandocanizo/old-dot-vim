@@ -313,8 +313,6 @@ au! BufRead,BufNewFile *.fish set filetype=fish
 " And the entry to read the syntax file is needed too
 au! Syntax fish source $HOME/.vim/syntax/fish.vim
 
-au! FileType man call MapeosMan()
-
 au! FileType mail call MapeosMail()
 
 au! FileType vim call MapeosVimRC()
@@ -376,10 +374,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
 
-
-function MapeosMan()
-	map <space> [6~
-endfunction
 
 function MapeosMail()
     " borra desde la posicion actual hasta el principio
