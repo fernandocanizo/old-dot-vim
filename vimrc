@@ -313,8 +313,6 @@ au! BufRead,BufNewFile *.fish set filetype=fish
 " And the entry to read the syntax file is needed too
 au! Syntax fish source $HOME/.vim/syntax/fish.vim
 
-au! FileType mail call MapeosMail()
-
 au! FileType vim call MapeosVimRC()
 
 au! FileType perl call MapeosPerl()
@@ -374,16 +372,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
 
-
-function MapeosMail()
-    " borra desde la posicion actual hasta el principio
-    " FIX: anular mensajes de confirmación para este mapeo
-    map <F1> :.,1d<enter>
-    " Borra desde linea actual (incluida) hasta la firma y nos deja en modo
-    " edición
-    map <F2> 0maG?^--<Enter>kd'a:noh<enter>O
-    set textwidth=70
-endfunction
 
 function MapeosVimRC()
     " para cuando edito este archivo
