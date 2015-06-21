@@ -308,8 +308,6 @@ au! FileType json call MapeosJson()
 au! BufRead,BufNewFile *.ctodo set filetype=ctodo
 au! FileType ctodo call MapeosConanTodo()
 
-au! FileType perl call MapeosPerl()
-
 au! FileType html call MapeosHTML()
 
 au! FileType xhtml call MapeosHTML()
@@ -364,33 +362,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !mv <afile> <afile>:r
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
-
-
-function MapeosPerl()
-	" F1 comentar lineas
-    map <F1> 0i#<esc>j
-    imap <F1> <esc>0i#<esc>j
-
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^#//e<return>:noh<return>j
-    imap <F2> <esc>:s/^#//e<return>:noh<return>j
-
-    " F3 comentario
-    map <F3> o<esc>i#<esc>a#<esc>148.<esc>yypO# 
-    imap <F3> <esc>o<esc>i#<esc>a#<esc>148.<esc>yypO# 
-
-	" F4 cabecera
-	map <F4> ggO#!/usr/bin/env perl<enter># Creation date:<esc>:r !date -R <enter>kJo# by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>use warnings;<enter>use strict;<enter>use 5.12.2;<enter><enter>
-	imap <F4> <esc>ggO#!/usr/bin/env perl<enter># Creation date:<esc>:r !date -R <enter>kJo# by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>use warnings;<enter>use strict;<enter>use 5.12.2;<enter><enter>
-
-    "
-    set textwidth=0 " no corte lineas
-    set cindent
-    " sería copado ponerlos de nuevo al comentar
-    set nowrap
-
-	colorscheme conanperlgray
-endfunction
 
 
 function MapeosC()
