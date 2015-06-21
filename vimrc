@@ -331,16 +331,6 @@ au! Filetype clojure call Clojure()
 
 au! FileType gitodo call GitodoMaps()
 
-augroup cprog
-	" When starting to edit a file:
-	"   For C and C++ files set formatting of comments and set C-indenting on.
-	"   For other files switch it off.
-	"   Don't change the order, it's important that the line with * comes first.
-	autocmd FileType * set formatoptions=tcql2 nocindent comments&
-	autocmd FileType c,cpp  call MapeosC()
-	autocmd BufNewFile,BufRead *.h call MapeosC()
-augroup end
-
 augroup gzip
 	" Enable editing of gzipped files
 	"     read: set binary mode before reading the file
@@ -363,66 +353,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
 
-
-function MapeosC()
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-    set textwidth=0
-	set autoindent
-    set nowrap " don't wrap lines
-    set wrapscan
-	set smartcase
-    set noincsearch
-
-	set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
-    " para make desde dentro de vim
-    " guarde los errores en este archivo: luego uno se mueve con :cnext
-    " :cprevious
-    set makeef=error
-
-    " evita que el editor se queje cda vez que se ejecuta un comando de shell
-    " útil para compilar
-    set autowrite
-    set nobackup " no need for backup, I have git
-
-    " F1 comentar lineas
-    map <F1> 0i/* $a */j
-    imap <F1> 0i/* $a */j
-
-	" F2 descomentar lo que F2 ha comentado: no sirve para comentarios genéricos
-	map <F2> 03x$xxxj
-    imap <F2> 03x$xxxj
-
-    " estaria bueno tener F3 para descomentar. O mejor aun: que F2 comente o
-    " descomente dependiendo de lo que vea
-
-    " F3 comentario estructurado para comentarios largos
-    map <F3> o/a*58.yyp0xA/ko
-    imap <F3> o/a*58.yyp0xA/ko
-
-    map <F4> <esc>1GO/*<enter> Creation Date: <esc>:r! LC_TIME=us date "+\%Y.\%m.\%d"<return><esc>kJoAuthor: Fernando L. Canizo - http://flc.muriandre.com/<return><esc>a/<esc>o
-
-    " <F5>, <F6>, <F7> ya se han usado
-
-    " F9 compilar
-    map <F9> :!gcc -Wall -c -g -ansi -pedantic % 2>error; less error
-
-    " F10 compilar y ejecutar, ver resultados con less
-    " (lo hice con F10 porque no pude mapear CTRL-F9)
-    map <F10> :!gcc -Wall -g -ansi -pedantic % -orunme ; ./runme > see 2> error; less see error
-
-    " F11 compilar y llamar a gdb
-    map <F11> :!gcc -Wall -g -ansi -pedantic % -o debugme 2>error; gdb debugme
-
-	" common code snippets
-	abbreviate main int main() {return(0);}<esc>
-	abbreviate stdio #include <stdio.h>
-
-	set omnifunc=phpcomplete#CompletePHP
-	call SpaceHighlightor()
-endfunction
 
 function MapeosPHP()
     " F1 comentar lineas
