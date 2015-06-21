@@ -308,11 +308,6 @@ au! FileType json call MapeosJson()
 au! BufRead,BufNewFile *.ctodo set filetype=ctodo
 au! FileType ctodo call MapeosConanTodo()
 
-" Create a new filetype for fish shell scripts
-au! BufRead,BufNewFile *.fish set filetype=fish
-" And the entry to read the syntax file is needed too
-au! Syntax fish source $HOME/.vim/syntax/fish.vim
-
 au! FileType perl call MapeosPerl()
 
 au! FileType html call MapeosHTML()
