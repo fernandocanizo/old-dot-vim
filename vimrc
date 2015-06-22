@@ -308,10 +308,6 @@ au! FileType json call MapeosJson()
 au! BufRead,BufNewFile *.ctodo set filetype=ctodo
 au! FileType ctodo call MapeosConanTodo()
 
-au! FileType html call MapeosHTML()
-
-au! FileType xhtml call MapeosHTML()
-
 au! FileType css call MapeosCSS()
 
 au! FileType lisp call MapeosLisp()
@@ -386,31 +382,6 @@ function MapeosPHP()
 	call SpaceHighlightor()
 endfunction
 
-" mapeos para editar confortablemente HTML
-function MapeosHTML()
-	" Configuración del autocompletado inteligente
-	" set omnifunc=htmlcomplete#CompleteTags
-
-	set textwidth=150
-
-    set autoindent
-	set nosmartindent
-
-    set noexpandtab " use TAB character when TAB is pressed
-    set tabstop=3 " number of spaces to show for a TAB
-	set shiftwidth=3 " number of spaces for indent (>>, endfunction
-	set softtabstop=3 " number of spaces for a tab in editing operations
-
-	" F1: comenta la linea actual
-	map <F1> I<!-- A -->j
-	" F2: quita comentario
-	map <F2> :s/\v^(\s*)\<!-- (.+)\s*--\>/\1\2/<enter>
-	" F3: crea comentario, te deja en modo inserción
-	map <F3> i<!--   -->k5li
-
-	" html5 template
-	map <F4> gg:r /home/conan/csoft/library/html/html.5.simple.html<enter>ggdd
-endfunction " MapeosHTML()
 
 function MapeosCSS()
 	" Configuración del autocompletado inteligente
