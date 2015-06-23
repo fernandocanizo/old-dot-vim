@@ -308,8 +308,6 @@ au! FileType json call MapeosJson()
 au! BufRead,BufNewFile *.ctodo set filetype=ctodo
 au! FileType ctodo call MapeosConanTodo()
 
-au! FileType css call MapeosCSS()
-
 au! FileType lisp call MapeosLisp()
 
 au! BufRead,BufNewFile *.nl call MapeosNewlisp()
@@ -382,34 +380,6 @@ function MapeosPHP()
 	call SpaceHighlightor()
 endfunction
 
-
-function MapeosCSS()
-	" Configuración del autocompletado inteligente
-	set omnifunc=csscomplete#CompleteCSS
-
-	set textwidth=130
-	set nowrap
-
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-
-	set smartindent
-	set smartcase
-    set noincsearch
-
-	" F1: comenta la linea actual
-	map <F1> 0i/*<esc>A*/<esc>j
-	imap <F1> <esc>0i/*<esc>A*/<esc>j
-	" F2 descomenta
-	map <F2> :s/\/\*//<enter>:s/\*\///<enter>:noh<enter>j
-	imap <F2> <esc>:s/\/\*//<enter>:s/\*\///<enter>:noh<enter>j
-
-    " F4 insertar datos
-    map <F4> <esc>1GO/*<return> * Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJo* Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/<return>*/<esc>o<return>
-
-endfunction
 
 function MapeosLisp()
 	" F1: comenta la linea actual
