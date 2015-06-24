@@ -308,8 +308,6 @@ au! FileType json call MapeosJson()
 au! BufRead,BufNewFile *.ctodo set filetype=ctodo
 au! FileType ctodo call MapeosConanTodo()
 
-au! FileType lisp call MapeosLisp()
-
 au! BufRead,BufNewFile *.nl call MapeosNewlisp()
 
 au! FileType php call MapeosPHP()
@@ -378,49 +376,6 @@ function MapeosPHP()
 	set omnifunc=phpcomplete#CompletePHP
 
 	call SpaceHighlightor()
-endfunction
-
-
-function MapeosLisp()
-	" F1: comenta la linea actual
-	map <f1> 0i; <esc>j
-	imap <f1> <esc>0i; <esc>j
-
-	" F2 descomenta
-	map <f2> :s/^; //<enter>j
-	imap <esc><f2> :s/^; //<enter>j
-
-	" F3 comentario estructurado
-    map <F3> o<esc>i;<esc>79.yyp0O;;<space>
-    imap <F3> <esc>o<esc>i;<esc>79.yyp0O;;<space>
-    
-	" shift-F3 comentario para separar menos llamativo
-    map [25~ o#<esc>a-<esc>78.j
-    
-	" F4 insertar datos
-    map <F4> <esc>1GO; Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJo; Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/<return><esc>o
-
-	" toggle red coloring, lisp convention is for spaces, and it's annoying to read other people's code all in red
-	map <F6> :call SpaceHighlightorOff()<enter>
-
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-
-    set textwidth=165
-	
-	set noautoindent " it puts 3 spaces instead of tabs
-	set smartindent " doesn't recognize all paterns but behaves more predictable
-	set nocindent " ugly! it puts just one space
-	set smartcase
-    set noincsearch
-
-
-	call SpaceHighlightor()
-
-    " sería copado que wrapee al comentar, pero no cuando escribo código
-"    set nowrap
 endfunction
 
 
