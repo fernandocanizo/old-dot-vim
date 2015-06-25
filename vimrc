@@ -310,8 +310,6 @@ au! FileType ctodo call MapeosConanTodo()
 
 au! BufRead,BufNewFile *.nl call MapeosNewlisp()
 
-au! FileType php call MapeosPHP()
-
 au! FileType lua call MapeosLua()
 
 au! FileType sql call MapeosSQL()
@@ -344,39 +342,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !mv <afile> <afile>:r
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
-
-
-function MapeosPHP()
-    " F1 comentar lineas
-    map <F1> 0i//<esc>j
-    imap <F1> <esc>0i//<esc>j
-
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^\/\///e<return>:noh<return>j
-    imap <F2> <esc>:s/^\/\///e<return>:noh<return>j
-
-    " F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i/<esc>79.yyp0O//<space>
-    imap <F3> <esc>o<esc>i/<esc>79.yyp0O/<space>
-
-    " F4 insertar datos
-    map <F4> <esc>1GO<?php<return>// Creation Date: <esc>:r! date "+\%Y.\%m.\%d"<return><esc><esc>kJo// Author: Fernando L. Canizo - http://flc.muriandre.com/<return>
-	
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-    set textwidth=0
-"	set nosmartindent
-	set autoindent
-    set wrap
-    set nowrapscan
-	set smartcase
-
-	set omnifunc=phpcomplete#CompletePHP
-
-	call SpaceHighlightor()
-endfunction
 
 
 function MapeosNewlisp()
