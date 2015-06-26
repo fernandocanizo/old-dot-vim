@@ -308,8 +308,6 @@ au! FileType json call MapeosJson()
 au! BufRead,BufNewFile *.ctodo set filetype=ctodo
 au! FileType ctodo call MapeosConanTodo()
 
-au! BufRead,BufNewFile *.nl call MapeosNewlisp()
-
 au! FileType lua call MapeosLua()
 
 au! FileType sql call MapeosSQL()
@@ -342,49 +340,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !mv <afile> <afile>:r
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
-
-
-function MapeosNewlisp()
-	" F1: comenta la linea actual
-	map <F1> 0i; <esc>j
-	imap <F1> <esc>0i; <esc>j
-
-	" F2 descomenta
-	map <F2> :s/\v^;[ ]*//<enter>j
-	imap <esc><F2> :s/\v^;[ ]*//<enter>j
-
-	" F3 comentario para generar autodocumentación para funciones
-    map <F3> o;; @syntax <return>;; @param <return>;; @return <return>;; @example<return><esc>
-    imap <F3> <esc>o;; @syntax <return>;; @param <return>;; @return <return>;; @example<return><esc>
-    
-	" F4 insertar datos
-    map <F4> gg0O#!/usr/bin/env newlisp<enter>;; Creation Date: <esc>:r! date "+\%Y.\%m.\%d"<return><esc>kJo;; @author Fernando L. Canizo - http://flc.muriandre.com/<return>;; @module<return>;; @description<return>;; @version 0<esc>o
-
-	" http://www.gnu.org/licenses/gpl-3.0.txt
-
-	" toggle red coloring, lisp convention is for spaces, and it's annoying to read other people's code all in red
-	map <F6> :call SpaceHighlightorOff()<enter>
-
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-
-    set textwidth=165
-	
-	set noautoindent " it puts 3 spaces instead of tabs
-	set smartindent " doesn't recognize all paterns but behaves more predictable
-	set nocindent " ugly! it puts just one space
-	set smartcase
-    set noincsearch
-
-	set filetype=newlisp
-
-	call SpaceHighlightor()
-
-    " sería copado que wrapee al comentar, pero no cuando escribo código
-"    set nowrap
-endfunction
 
 
 function MapeosPicolisp()
