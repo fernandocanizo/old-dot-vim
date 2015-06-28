@@ -15,7 +15,7 @@ map <F3> o<esc>i/<esc>79.yyp0O//<space>
 imap <F3> <esc>o<esc>i/<esc>79.yyp0O//<space>
 
 " F4 file header
-map <F4> <esc>1GO// Creation Date: <esc>:r! date "+\%Y.\%m.\%d"<return><esc><esc>kJo// Author: Fernando L. Canizo - http://flc.muriandre.com/<esc>o<esc>0xxo<return><esc>kO"use strict";<enter><enter>
+map <F4> <esc>1GO// Creation Date: <esc>:r! date "+\%Y.\%m.\%d"<return><esc>kJo<esc>0xxo<return><esc>kO"use strict";<esc>G
 
 " use TAB character when TAB is pressed
 set noexpandtab
