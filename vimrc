@@ -5,9 +5,12 @@ set nocompatible " Use Vim defaults (much better!)
 filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 	" Keep Plugin commands between vundle#begin/end.
+
+	" Let Vundle manage itself
+	Plugin 'Vundlevim/Vundle.vim'
 
 	" YouCompleteMe is a little bit stupid on Javascript, but with tern_for_vim it becomes awesome
 	" (says oli.me.uk but I don't have it working yet)
