@@ -184,7 +184,8 @@ set noexpandtab " Use tabs, not spaces
 set noerrorbells
 set visualbell
 
-set formatoptions=tcq2
+" Disable autocommenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Place only a single space between sentences when joinging lines.
 set nojoinspaces
