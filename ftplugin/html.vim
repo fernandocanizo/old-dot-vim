@@ -1,4 +1,4 @@
-set textwidth=150
+set textwidth=0
 
 set autoindent
 set nosmartindent
