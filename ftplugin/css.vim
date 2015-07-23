@@ -29,4 +29,4 @@ map <F2> :s/\/\*//<enter>:s/\*\///<enter>:noh<enter>j
 imap <F2> <esc>:s/\/\*//<enter>:s/\*\///<enter>:noh<enter>j
 
 " F4 header
-map <F4> <esc>1GO/*<return> * Creation Date: <esc>:r! LC_TIME=us date "+\%Y.\%m.\%d"<return><esc><esc>kJo* Author: Fernando L. Canizo - http://flc.muriandre.com/<return>*/<esc>o<return>
+map <F4> <esc>1GO/* Creation Date: <esc>:r! LC_TIME=us date "+\%Y.\%m.\%d"<return>kJA */<esc>o<return>
