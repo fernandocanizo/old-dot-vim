@@ -223,8 +223,8 @@ nmap <Leader>l :tabnext<return>
 
 
 " buffer navigation
-nmap <c-h> :bnext<enter>
-nmap <c-l> :bprevious<enter>
+nmap <c-h> :bprevious<enter>
+nmap <c-l> :bnext<enter>
 
 
 " scroll up/down one line keeping current position
