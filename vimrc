@@ -15,13 +15,18 @@ call vundle#begin()
 	" YouCompleteMe is a little bit stupid on Javascript, but with tern_for_vim it becomes awesome
 	" (says oli.me.uk but I don't have it working yet)
 	" 2015.05.30 not very happy with it, uses >250 MB RAM, need to find an option
-	Plugin 'Valloric/YouCompleteMe'
+
+
+"	Plugin 'Valloric/YouCompleteMe'
+	" let's use another tab completer
+	Plugin 'ervandew/supertab'
+
 
 	" use it by calling :Tern<tab>
 	" for example TernDef will tell you the link on mozilla developer website
 "	Plugin 'https://github.com/marijnh/tern_for_vim.git'
 
-	Plugin 'SirVer/ultisnips'
+"	Plugin 'SirVer/ultisnips'
 
 	" Syntastic is a syntax checking plugin that runs files through external syntax checkers and displays any
 	" resulting errors to the user
@@ -66,6 +71,18 @@ call vundle#end()
 " use tidy-html5
 let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy5'
 
+" Syntastic plugin configuration
+" recommended for new users of Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" Syntastic configuration ends
+
 
 " javascript-libraries-syntax configuration as I don't use all the libraries it provides syntax for
 let g:used_javascript_libs = 'jquery,underscore,backbone,handlebars'
@@ -90,18 +107,6 @@ let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 "ultisnips configuration ends
 
-
-" Syntastic plugin configuration
-" recommended for new users of Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Syntastic configuration ends
 
 
 " SyntaxComplete configuration
@@ -197,7 +202,7 @@ set hlsearch
 if &t_Co > 2 || has("gui_running")
 	" Background must be set for syntax on to have an effect
 	set background=dark
-	colorscheme conanperlgray
+	colorscheme darkblue
     syntax on
 endif
 
@@ -235,10 +240,6 @@ map <C-k> <C-y>k
 " reformat to end of paragraph
 map Q gq}
 
-" less-like behaviour
-nmap <space> <PageDown>
-nmap <backspace> <PageUp>
-
 
 " quit and macro recording
 nnoremap <Leader>r q
@@ -259,29 +260,17 @@ nnoremap # :set hls<enter>#\v
 nnoremap * :set hls<enter>*\v
 cnoremap s/ s/\v
 
-" F1 shell-like line commenting
-map <F1> 0i#<esc>j
-imap <F1> <esc>0i#<esc>j
-
-" F2 shell-like line uncommenting
-map <F2> :s/^#//e<return>:noh<return>j
-imap <F2> <esc>:s/^#//e<return>:noh<return>j
-
-" line separator
-map <F3> o<esc>a—<esc>168.
-imap <F3> <esc>0a—<esc>168.o
-
-set pastetoggle=<F5>
+set pastetoggle=<Leader>5
 
 " toggle cursor line highlighting
 map <F6> :set cursorline!<enter>:set cursorline?<enter>
 
 " toggle search highlighting
-map <F7> :set hls!<enter>:set hls?<enter>
+map <Leader>7 :set hls!<enter>:set hls?<enter>
 
 " insert date in RFC 2822 format
-map <F8> <esc>:r !date<enter>kJ$
-imap <F8> <esc>:r !date<enter>A<space>
+map <Leader>8 <esc>:r !date<enter>kJ$
+imap <Leader>8 <esc>:r !date<enter>A<space>
 
 " shift+insert copies from XA_PRIMARY (mouse selection)
 " this mapping copies from XA_SECONDARY (clipboard)
@@ -306,6 +295,8 @@ autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
 
 " Open files completely unfolded
 au BufRead * normal zR
+
+au BufRead sa call ScraperApps()
 
 au! FileType json call MapeosJson()
 
@@ -346,98 +337,10 @@ augroup gzip
 augroup end
 
 
-function MapeosPicolisp()
-    " F1 comentar lineas
-    map <F1> 0i#<esc>j
-    imap <F1> <esc>0i#<esc>j
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^#//e<return>:noh<return>j
-    imap <F2> <esc>:s/^#//e<return>:noh<return>j
-    " F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i#<esc>79.yyp0O#<space>
-    imap <F3> <esc>o<esc>i#<esc>79.yyp0O# 
-    " shift-F3 comentario para separar menos llamativo
-    map [25~ o#<esc>a-<esc>78.j
-    " F4 insertar datos
-    map <F4> <esc>1GO#! /home/conan/bin/picolisp /home/conan/lib/picolisp<return># -*- coding: utf8 -*-<return># Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJo# Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/<return># This software is under GPL v2 license - http://www.gnu.org/licenses/gpl.txt<esc>o
-
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=3 " number of spaces to show for a TAB
-	set shiftwidth=3 " number of spaces for indent (>>, endfunction
-	set softtabstop=3 " number of spaces for a tab in editing operations
-
-    set textwidth=80
-    " recomience búsqueda desde el ppio. si es necesario
-    set wrapscan
-    colorscheme elflord
-
-	" por ahora asi, aunque debe haber un syntax file para picolisp en algun lado
-	" set filetype=lisp
-" no funco, me pone comentarios tipo lisp en vez del hash (#)
-endfunction
-
-
-function MapeosLua()
-    " F1 comentar lineas
-    map <F1> 0i--<esc>j
-    imap <F1> <esc>0i--<esc>j
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^--//e<return>:noh<return>j
-    imap <F2> <esc>:s/^--//e<return>:noh<return>j
-    " F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i-<esc>79.yyp0O/<space>
-    imap <F3> <esc>o<esc>i-<esc>79.yyp0O/<space>
-    " F4 insertar datos
-    map <F4> <esc>1GO-- Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJoAuthor: Fernando Canizo (akaconan) - http://conan.muriandre.com/<return> This software is under GPL v2 license - http://www.gnu.org/licenses/gpl.txt<esc>o<esc>0xxo<return><esc>kO
-
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-
-    set textwidth=130
-    set autoindent
-    " sería copado ponerlos de nuevo al comentar
-	set nowrap
-    set wrapscan
-	set smartcase
-    " uso color cyan para los comentarios
-    "hi Comment ctermfg=11
-    colorscheme elflord
-
-endfunction
-
-
-" acronym abbreviation to work in my nanoblogger blog
-function BlogAbbreviations()
-	" they don't work if you press ENTER after the word, only with space (?)
-	abbreviate p10n <acronym title="programming meeting">p10n</acronym>
-	abbreviate p2p <acronym title="peer to peer">p2p</acronym> 
-endfunction
-
-" to edit subtitles for translation
-function Subtitle()
-	set textwidth=40
-	set scrollbind
-endfunction
-
-function MapeosSQL()
-"	source /usr/share/vim/autoload/dbext.vim
-"	source /usr/share/vim/plugin/dbext.vim
-	set textwidth=160
-
-	" F1 comentar lineas
-	map <F1> 0i-- <esc>j
-	imap <F1> <esc>0i-- <esc>j
-	" F2 descomentar lineas solo si tienen un # al comienzo
-	map <F2> :s/^-- //e<return>:noh<return>j
-	imap <F2> <esc>:s/^-- //e<return>:noh<return>j
-
-    " F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i-- <esc>a#<esc>96.yyp0O--<space>
-    imap <F3> <esc>o<esc>i-- <esc>a#<esc>96.yyp0O--<space>
-    " F4 insertar datos
-    map <F4> <esc>1GO-- Creation Date: <esc>:r! LC_TIME=us date -R<return><esc><esc>kJo-- Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/<return>
+function ScraperApps()
+	" a special setting to recognize `sa` script as javascript
+	" drop this when done
+	set filetype=javascript
 endfunction
 
 
@@ -471,33 +374,6 @@ function MapeosRuby()
 	colorscheme conanperlgray
 endfunction
 
-function Clojure() " clojure mappings
-	" required by vimclojure package
-	syntax on
-	filetype plugin indent on
-	let vimclojure#WantNailgun = 1
-	let vimclojure#NailgunClient = "ng"
-	" to get the REPL run:
-	" java -cp /usr/share/clojure/clojure.jar:/usr/share/clojure/clojure-contrib.jar:/usr/share/vimclojure/vimclojure.jar vimclojure.nailgun.NGServer 127.0.0.1
-
-	" F1 comment line
-    map <F1> 0i;<esc>j
-    imap <F1> <esc>0i;<esc>j
-
-    " F2 uncomment line only if has semicolon at the beginning
-    map <F2> :s/^;//e<return>:noh<return>j
-    imap <F2> <esc>:s/^;//e<return>:noh<return>j
-
-    " F3 structured comment
-    map <F3> o<esc>i;<esc>a;<esc>148.<esc>yypO; 
-    imap <F3> <esc>o<esc>i;<esc>a;<esc>148.<esc>yypO; 
-
-	" F4 cabecera
-	map <F4> ggO;#!/usr/bin/env clj<enter>; Creation date:<esc>:r !date -R <enter>kJo; by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>
-	imap <F4> <esc>ggO;#!/usr/bin/env clj<enter>; Creation date:<esc>:r !date -R <enter>kJo; by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>
-
-endfunction
-
 function SpaceHighlightor()
 	" by luca@lugfi: hl in red spaces at the beginning
 	highlight SpaceError ctermbg=red
@@ -516,9 +392,6 @@ function GitodoMaps()
 
 endfunction
 
-function MapeosConanTodo()
-endfunction
-
 
 function MapeosJson()
 	" I create my package.json with 'npm init' command, which uses 2 spaces for indenting
@@ -529,11 +402,10 @@ function MapeosJson()
 "	set softtabstop=2 " number of spaces for a tab in editing operations
 "	set expandtab " use spaces
 
-	" FUCK npm! I'll do :retab! each time
-	set shiftwidth=4 " Number of spaces to insert when indenting.
-	set tabstop=4
-	set softtabstop=4 " number of spaces for a tab in editing operations
-	set noexpandtab " don't use spaces
+	set shiftwidth=2 " Number of spaces to insert when indenting.
+	set tabstop=2
+	set softtabstop=2 " number of spaces for a tab in editing operations
+	set expandtab " don't use spaces
 endfunction
 
 
