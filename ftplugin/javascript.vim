@@ -4,18 +4,18 @@
 set omnifunc=javascriptcomplete#CompleteJS
 
 " F1 comment line
-map <F1> 0i//<esc>j
-imap <F1> <esc>0i//<esc>j
+map <Leader>1 0i//<esc>0j
+imap <Leader>1 <esc>0i//<esc>0j
 
 " F2 uncomment line
-map <F2> :s/^\/\///e<return>:noh<return>j
+map <Leader>2 :s/^\/\///e<return>:noh<return>j
 
 " F3 structured comment
-map <F3> o<esc>i/<esc>79.yyp0O//<space>
-imap <F3> <esc>o<esc>i/<esc>79.yyp0O//<space>
+map <Leader>3 o<esc>i/<esc>79.yyp0O//<space>
+imap <Leader>3 <esc>o<esc>i/<esc>79.yyp0O//<space>
 
 " F4 file header
-map <F4> <esc>1GO// Creation Date: <esc>:r! date "+\%Y.\%m.\%d"<return><esc>kJo<esc>0xxo<return><esc>kO"use strict";<esc>G
+map <Leader>4 <esc>1GO// Creation Date: <esc>:r! date "+\%Y.\%m.\%d"<return><esc>kJo<esc>0xxo<return><esc>kO"use strict";<esc>Gi
 
 " use TAB character when TAB is pressed
 set noexpandtab
