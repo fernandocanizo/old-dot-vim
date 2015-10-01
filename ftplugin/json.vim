@@ -17,7 +17,5 @@ set smartindent
 set nowrap
 set smartcase
 
-colorscheme conanperlgray
-
 " highlight unwanted spaces
 call SpaceHighlightor()

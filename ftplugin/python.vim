@@ -19,7 +19,7 @@ map <Shift><Leader>3 o#<esc>a-<esc>78.j
 map <Leader>4 <esc>1GO#! /usr/bin/env python<return># -*- coding: utf8 -*-<return># Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJo
 
 " use TAB character
-set noexpandtab
+set expandtab
 
 " number of spaces to show for a TAB
 set tabstop=4
@@ -36,7 +36,7 @@ set background=dark
 autocmd BufRead *.py set smartindent
 set autoindent
 
-set textwidth=0
+set textwidth=80
 
 set nowrap
 set nowrapscan
