@@ -4,16 +4,16 @@ set autoindent
 set nosmartindent
 
 " use TAB character when TAB key is pressed
-set noexpandtab
+set expandtab
 
 " number of spaces to show for a TAB
-set tabstop=4
+set tabstop=2
 
 " number of spaces for indent with >>
-set shiftwidth=4
+set shiftwidth=2
 
 " number of spaces for a tab in editing operations
-set softtabstop=4
+set softtabstop=2
 
 " F1 comment line
 map <F1> I<!-- A -->j
