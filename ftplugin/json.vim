@@ -1,5 +1,5 @@
 " use spaces when TAB is pressed
-set noexpandtab
+set expandtab
 
 " number of spaces to show for a TAB
 set tabstop=2
