@@ -240,8 +240,8 @@ map <C-k> <C-y>k
 map Q gq}
 
 " less-like behaviour
-nmap <space> <PageDown>
-nmap <backspace> <PageUp>
+"nmap <space> <PageDown>
+"nmap <backspace> <PageUp>
 
 
 " quit and macro recording
