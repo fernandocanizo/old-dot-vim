@@ -16,10 +16,11 @@ call vundle#begin()
 	" (says oli.me.uk but I don't have it working yet)
 	" 2015.05.30 not very happy with it, uses >250 MB RAM, need to find an option
 	Plugin 'Valloric/YouCompleteMe'
+	Plugin 'https://github.com/ervandew/supertab'
 
 	" use it by calling :Tern<tab>
 	" for example TernDef will tell you the link on mozilla developer website
-"	Plugin 'https://github.com/marijnh/tern_for_vim.git'
+	Plugin 'https://github.com/marijnh/tern_for_vim.git'
 
 	Plugin 'SirVer/ultisnips'
 
@@ -34,7 +35,7 @@ call vundle#begin()
 	Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
 
 	" lean & mean status/tabline for vim that's light as air
-	Plugin 'https://github.com/bling/vim-airline.git'
+	Plugin 'https://github.com/vim-airline/vim-airline'
 
 	" to show difference on files already in git repo
 	Plugin 'https://github.com/airblade/vim-gitgutter.git'
@@ -60,6 +61,9 @@ call vundle#begin()
 
 	Plugin 'https://github.com/majutsushi/tagbar'
 
+	Plugin 'https://github.com/ctrlpvim/ctrlp.vim'
+
+	Plugin 'https://github.com/scrooloose/nerdtree'
 call vundle#end()
 
 " Syntastic configuration
