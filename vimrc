@@ -66,20 +66,34 @@ call vundle#begin()
 	Plugin 'https://github.com/scrooloose/nerdtree'
 call vundle#end()
 
+" CTRLP ignore list
+let g:ctrlp_custom_ignore = { 'dir': 'tmp\|node_modules\|DS_Store\|\.git' }
+
+" NERDTree toggle key
+map <Leader>t :NERDTreeToggle<enter>
+
 " Syntastic configuration
+" recommended for new users of Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
 " use tidy-html5
 let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy5'
-
+" Syntastic configuration ends
 
 " javascript-libraries-syntax configuration as I don't use all the libraries it provides syntax for
 let g:used_javascript_libs = 'jquery,underscore,backbone,handlebars'
-
 
 " airline: Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " airline: Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-
 
 " detect file types, autoload associated plugin and indent file for detected file type
 " required by Vundle
@@ -93,20 +107,6 @@ let g:UltiSnipsListSnippets = '<C-F12>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 "ultisnips configuration ends
-
-
-" Syntastic plugin configuration
-" recommended for new users of Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Syntastic configuration ends
-
 
 " SyntaxComplete configuration
 " setup SyntaxComplete for every filetype that does not already have a language specific OMNI script
