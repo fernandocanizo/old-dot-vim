@@ -303,25 +303,10 @@ match errorMsg /[^\t]\zs\t\+/
 " jump to last position we were editing on this file
 autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
 
-
 " Open files completely unfolded
 au BufRead * normal zR
 
-au! FileType json call MapeosJson()
-
-au! BufRead,BufNewFile *.ctodo set filetype=ctodo
-au! FileType ctodo call MapeosConanTodo()
-
-au! FileType lua call MapeosLua()
-
 au! FileType sql call MapeosSQL()
-
-au! Filetype ruby call MapeosRuby()
-au! Filetype eruby call MapeosRuby()
-
-au! Filetype clojure call Clojure()
-
-au! FileType gitodo call GitodoMaps()
 
 augroup gzip
 	" Enable editing of gzipped files
@@ -345,82 +330,6 @@ augroup gzip
 	autocmd FileAppendPost      *.gz !gzip <afile>:r
 augroup end
 
-
-function MapeosPicolisp()
-    " F1 comentar lineas
-    map <F1> 0i#<esc>j
-    imap <F1> <esc>0i#<esc>j
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^#//e<return>:noh<return>j
-    imap <F2> <esc>:s/^#//e<return>:noh<return>j
-    " F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i#<esc>79.yyp0O#<space>
-    imap <F3> <esc>o<esc>i#<esc>79.yyp0O# 
-    " shift-F3 comentario para separar menos llamativo
-    map [25~ o#<esc>a-<esc>78.j
-    " F4 insertar datos
-    map <F4> <esc>1GO#! /home/conan/bin/picolisp /home/conan/lib/picolisp<return># -*- coding: utf8 -*-<return># Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJo# Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/<return># This software is under GPL v2 license - http://www.gnu.org/licenses/gpl.txt<esc>o
-
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=3 " number of spaces to show for a TAB
-	set shiftwidth=3 " number of spaces for indent (>>, endfunction
-	set softtabstop=3 " number of spaces for a tab in editing operations
-
-    set textwidth=80
-    " recomience búsqueda desde el ppio. si es necesario
-    set wrapscan
-    colorscheme elflord
-
-	" por ahora asi, aunque debe haber un syntax file para picolisp en algun lado
-	" set filetype=lisp
-" no funco, me pone comentarios tipo lisp en vez del hash (#)
-endfunction
-
-
-function MapeosLua()
-    " F1 comentar lineas
-    map <F1> 0i--<esc>j
-    imap <F1> <esc>0i--<esc>j
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^--//e<return>:noh<return>j
-    imap <F2> <esc>:s/^--//e<return>:noh<return>j
-    " F3 comentario estructurado (para definiciones de funciones and the like)
-    map <F3> o<esc>i-<esc>79.yyp0O/<space>
-    imap <F3> <esc>o<esc>i-<esc>79.yyp0O/<space>
-    " F4 insertar datos
-    map <F4> <esc>1GO-- Creation Date: <esc>:r! LC_TIME=us date "+\%e \%b \%Y"<return><esc><esc>kJoAuthor: Fernando Canizo (akaconan) - http://conan.muriandre.com/<return> This software is under GPL v2 license - http://www.gnu.org/licenses/gpl.txt<esc>o<esc>0xxo<return><esc>kO
-
-    set noexpandtab " use TAB character when TAb is pressed
-    set tabstop=4 " number of spaces to show for a TAB
-	set shiftwidth=4 " number of spaces for indent (>>, endfunction
-	set softtabstop=4 " number of spaces for a tab in editing operations
-
-    set textwidth=130
-    set autoindent
-    " sería copado ponerlos de nuevo al comentar
-	set nowrap
-    set wrapscan
-	set smartcase
-    " uso color cyan para los comentarios
-    "hi Comment ctermfg=11
-    colorscheme elflord
-
-endfunction
-
-
-" acronym abbreviation to work in my nanoblogger blog
-function BlogAbbreviations()
-	" they don't work if you press ENTER after the word, only with space (?)
-	abbreviate p10n <acronym title="programming meeting">p10n</acronym>
-	abbreviate p2p <acronym title="peer to peer">p2p</acronym> 
-endfunction
-
-" to edit subtitles for translation
-function Subtitle()
-	set textwidth=40
-	set scrollbind
-endfunction
-
 function MapeosSQL()
 "	source /usr/share/vim/autoload/dbext.vim
 "	source /usr/share/vim/plugin/dbext.vim
@@ -440,64 +349,6 @@ function MapeosSQL()
     map <F4> <esc>1GO-- Creation Date: <esc>:r! LC_TIME=us date -R<return><esc><esc>kJo-- Author: Fernando Canizo (aka conan) - http://conan.muriandre.com/<return>
 endfunction
 
-
-function MapeosRuby()
-	" F1 comentar lineas
-    map <F1> 0i#<esc>j
-    imap <F1> <esc>0i#<esc>j
-
-    " F2 descomentar lineas solo si tienen un # al comienzo
-    map <F2> :s/^#//e<return>:noh<return>j
-    imap <F2> <esc>:s/^#//e<return>:noh<return>j
-
-    " F3 comentario
-    map <F3> o<esc>i#<esc>a#<esc>148.<esc>yypO# 
-    imap <F3> <esc>o<esc>i#<esc>a#<esc>148.<esc>yypO# 
-
-	" F4 cabecera
-	map <F4> ggO#!/usr/bin/env ruby<enter># Creation date:<esc>:r !date -R <enter>kJo# by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>
-	imap <F4> <esc>ggO#!/usr/bin/env ruby<enter># Creation date:<esc>:r !date -R <enter>kJo# by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>
-
-    set textwidth=0 " no corte lineas
-    set cindent
-    " sería copado ponerlos de nuevo al comentar
-    set nowrap
-
-	set shiftwidth=2 " Number of spaces to insert when indenting.
-	set tabstop=2
-	set softtabstop=2 " number of spaces for a tab in editing operations
-	set noexpandtab " Use tabs, not spaces
-
-	colorscheme conanperlgray
-endfunction
-
-function Clojure() " clojure mappings
-	" required by vimclojure package
-	syntax on
-	filetype plugin indent on
-	let vimclojure#WantNailgun = 1
-	let vimclojure#NailgunClient = "ng"
-	" to get the REPL run:
-	" java -cp /usr/share/clojure/clojure.jar:/usr/share/clojure/clojure-contrib.jar:/usr/share/vimclojure/vimclojure.jar vimclojure.nailgun.NGServer 127.0.0.1
-
-	" F1 comment line
-    map <F1> 0i;<esc>j
-    imap <F1> <esc>0i;<esc>j
-
-    " F2 uncomment line only if has semicolon at the beginning
-    map <F2> :s/^;//e<return>:noh<return>j
-    imap <F2> <esc>:s/^;//e<return>:noh<return>j
-
-    " F3 structured comment
-    map <F3> o<esc>i;<esc>a;<esc>148.<esc>yypO; 
-    imap <F3> <esc>o<esc>i;<esc>a;<esc>148.<esc>yypO; 
-
-	" F4 cabecera
-	map <F4> ggO;#!/usr/bin/env clj<enter>; Creation date:<esc>:r !date -R <enter>kJo; by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>
-	imap <F4> <esc>ggO;#!/usr/bin/env clj<enter>; Creation date:<esc>:r !date -R <enter>kJo; by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter>
-
-endfunction
-
 function SpaceHighlightor()
 	" by luca@lugfi: hl in red spaces at the beginning
 	highlight SpaceError ctermbg=red
@@ -508,32 +359,6 @@ endfunction
 function SpaceHighlightorOff()
 	" turn off all highlights from SpaceHighlightor
 	match none
-endfunction
-
-
-function GitodoMaps()
-	map <F4> gg0iwhat: <enter>when: <enter>prio: <enter>warn: <esc>ggA
-
-endfunction
-
-function MapeosConanTodo()
-endfunction
-
-
-function MapeosJson()
-	" I create my package.json with 'npm init' command, which uses 2 spaces for indenting
-	" so let's play nice with it
-
-"	set shiftwidth=2 " Number of spaces to insert when indenting.
-"	set tabstop=2
-"	set softtabstop=2 " number of spaces for a tab in editing operations
-"	set expandtab " use spaces
-
-	" FUCK npm! I'll do :retab! each time
-	set shiftwidth=4 " Number of spaces to insert when indenting.
-	set tabstop=4
-	set softtabstop=4 " number of spaces for a tab in editing operations
-	set noexpandtab " don't use spaces
 endfunction
 
 
