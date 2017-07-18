@@ -231,6 +231,7 @@ set nohls
 " allow me to switch to another buffer even if I haven't written my changes
 set hidden
 
+set cryptmethod=blowfish2
 
 " Mappings
 
