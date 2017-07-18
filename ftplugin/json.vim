@@ -17,6 +17,10 @@ set smartindent
 set nowrap
 set smartcase
 
+" Disable JSON concealing from Vim
+set concealcursor=nc
+set conceallevel=0
+
 colorscheme conanperlgray
 
 " highlight unwanted spaces
