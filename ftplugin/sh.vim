@@ -15,4 +15,5 @@ map <F4> ggO#!/bin/bash<enter># Creation date:<esc>:r !date "+\%Y.\%m.\%d"<enter
 
 imap <F4> <esc>ggO#!/bin/bash<enter># Creation date:<esc>:r !date -R <enter>kJo# by Fernando Canizo (aka conan) - http://conan.muriandre.com/<enter><enter># exit if any statement returns false value (can't use $? from now on)<enter>set -o errexit<enter># exit if variable not set<enter>set -o nounset<enter># uncomment to debug<enter>#set -x<enter>
 
+set number
 set textwidth=0
