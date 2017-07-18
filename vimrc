@@ -12,17 +12,7 @@ call vundle#begin()
 	" Let Vundle manage itself
 	Plugin 'Vundlevim/Vundle.vim'
 
-	" YouCompleteMe is a little bit stupid on Javascript, but with tern_for_vim it becomes awesome
-	" (says oli.me.uk but I don't have it working yet)
-	" 2015.05.30 not very happy with it, uses >250 MB RAM, need to find an option
-	Plugin 'Valloric/YouCompleteMe'
 	Plugin 'https://github.com/ervandew/supertab'
-
-	" use it by calling :Tern<tab>
-	" for example TernDef will tell you the link on mozilla developer website
-	Plugin 'https://github.com/marijnh/tern_for_vim.git'
-
-	Plugin 'SirVer/ultisnips'
 
 	" Syntastic is a syntax checking plugin that runs files through external syntax checkers and displays any
 	" resulting errors to the user
@@ -30,6 +20,9 @@ call vundle#begin()
 
 	" OMNI Completion based on the current syntax highlights
 	Plugin 'SyntaxComplete'
+
+	" Vastly improved Javascript indentation and syntax support in Vim
+	Plugin 'https://github.com/pangloss/vim-javascript'
 
 	" syntax support for popular javascript libraries
 	Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
@@ -52,9 +45,11 @@ call vundle#begin()
 	" Vim digraphs (type after <C-K> to insert the character): Co, cO
 	" Emoji codes: :copyright:
 	" HTML entities: &copy;
-	Plugin 'https://github.com/tpope/vim-characterize.git'
+	"Plugin 'https://github.com/tpope/vim-characterize.git'
 
-	Plugin 'https://github.com/tpope/vim-jdaddy.git'
+	" JSON manipulation and pretty printing
+	"Plugin 'https://github.com/tpope/vim-jdaddy.git'
+	Plugin 'https://github.com/elzr/vim-json'
 
 	" 2015.03.06 syntax for Mustache and Handlebars templates
 	Plugin 'mustache/vim-mustache-handlebars'
@@ -64,7 +59,31 @@ call vundle#begin()
 	Plugin 'https://github.com/ctrlpvim/ctrlp.vim'
 
 	Plugin 'https://github.com/scrooloose/nerdtree'
+
+	" Vertical lines to show indentation level
+	Plugin 'https://github.com/Yggdroot/indentLine'
+
+	" JSX syntax highlighting
+	"Plugin 'https://github.com/mxw/vim-jsx'
+
+	Plugin 'https://github.com/leafgarland/typescript-vim'
+
+	" 2017.03.10
+	Plugin 'https://github.com/tpope/vim-unimpaired'
+
 call vundle#end()
+
+" Disable double quotes concealing by elzr/vim-json plugin
+let g:vim_json_syntax_conceal = 0
+
+" Fucking indentLine script overwrites my settings for concealing (I don't like json double quotes concealing)
+" Bring my quotes back!
+let g:indentLine_concealcursor = ''
+let g:indentLine_conceallevel = 0
+
+
+" Don't require files to have `.jsx` extension to be parsed as JSX
+let g:jsx_ext_required = 0
 
 " CTRLP ignore list
 let g:ctrlp_custom_ignore = { 'dir': 'tmp\|node_modules\|DS_Store\|\.git' }
@@ -247,7 +266,6 @@ map Q gq}
 " quit and macro recording
 nnoremap <Leader>r q
 nmap q :q<enter>
-
 
 " Indenting
 vmap <tab> >>
