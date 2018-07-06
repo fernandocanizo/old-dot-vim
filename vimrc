@@ -276,14 +276,14 @@ vmap <tab> >>
 vmap <S-tab> <<
 
 
-" regexp: cannot set very magic permanently, so this mappings are a work around, they set very magic
-" also I set hls everytime I search
-" TODO modify next one to not put an \v after every other forward slash
+" highlight searches
 nnoremap / :set hls<enter>/\v
 nnoremap ? :set hls<enter>?\v
 nnoremap # :set hls<enter>#\v
 nnoremap * :set hls<enter>*\v
-cnoremap s/ s/\v
+
+" regexp: cannot set very magic permanently, so this mappings are a work around, they set very magic
+cnoremap %s/ %s/\v
 
 " F1 shell-like line commenting
 map <F1> 0i#<esc>j
