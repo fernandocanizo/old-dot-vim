@@ -54,8 +54,6 @@ call vundle#begin()
 	" 2015.03.06 syntax for Mustache and Handlebars templates
 	Plugin 'mustache/vim-mustache-handlebars'
 
-	Plugin 'https://github.com/majutsushi/tagbar'
-
 	Plugin 'https://github.com/ctrlpvim/ctrlp.vim'
 
 	Plugin 'https://github.com/scrooloose/nerdtree'
