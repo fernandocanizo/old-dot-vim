@@ -82,7 +82,7 @@ let g:vim_json_syntax_conceal = 0
 " Fucking indentLine script overwrites my settings for concealing (I don't like json double quotes concealing)
 " Bring my quotes back!
 let g:indentLine_concealcursor = ''
-let g:indentLine_conceallevel = 0
+let g:indentLine_conceallevel = 1
 
 
 " Don't require files to have `.jsx` extension to be parsed as JSX
