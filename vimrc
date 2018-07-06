@@ -71,6 +71,9 @@ call vundle#begin()
 	" 2017.03.10
 	Plugin 'https://github.com/tpope/vim-unimpaired'
 
+	" 2017.10.24 EJS (embedded javascript syntax)
+	Plugin 'nikvdp/ejs-syntax'
+
 call vundle#end()
 
 " Disable double quotes concealing by elzr/vim-json plugin
