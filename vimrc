@@ -27,9 +27,6 @@ call vundle#begin()
 	" syntax support for popular javascript libraries
 	Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
 
-	" lean & mean status/tabline for vim that's light as air
-	Plugin 'https://github.com/vim-airline/vim-airline'
-
 	" to show difference on files already in git repo
 	Plugin 'https://github.com/airblade/vim-gitgutter.git'
 
@@ -110,11 +107,6 @@ let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy5'
 
 " javascript-libraries-syntax configuration as I don't use all the libraries it provides syntax for
 let g:used_javascript_libs = 'jquery,underscore,backbone,handlebars'
-
-" airline: Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" airline: Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 " detect file types, autoload associated plugin and indent file for detected file type
 " required by Vundle
