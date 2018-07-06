@@ -25,4 +25,4 @@ map <F2> :s/\v^(\s*)\<!-- (.+)\s*--\>/\1\2/<enter>
 map <F3> i<!--   -->k5li
 
 " html5 template
-map <F4> gg:r /home/conan/csoft/library/html/html5.simple.html<enter>ggdd
+map <F4> gg:r $HOME/.vim/templates/index.html<enter><esc>ggdd
