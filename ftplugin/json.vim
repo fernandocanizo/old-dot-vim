@@ -21,6 +21,8 @@ set smartcase
 set concealcursor=nc
 set conceallevel=0
 
+set number
+
 colorscheme conanperlgray
 
 " highlight unwanted spaces
