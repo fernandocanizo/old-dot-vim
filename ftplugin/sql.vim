@@ -21,13 +21,13 @@
 set expandtab
 
 " number of spaces to show for a TAB
-set tabstop=4
+set tabstop=2
 
 " number of spaces for indent (>>, endfunction
-set shiftwidth=4
+set shiftwidth=2
 
 " number of spaces for a tab in editing operations
-set softtabstop=4
+set softtabstop=2
 
 set textwidth=140
 
