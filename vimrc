@@ -101,6 +101,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+" point *_exec to a valid binary (WTF?!) ->
+" That's because *_exec has to point to an executable file before syntastic would consider enabling the checker
+" This makes the linter work again, but it doesn't provide the error list, error list windows comes empty
+let g:syntastic_javascript_eslint_exec = '/bin/true'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npx eslint '
 
