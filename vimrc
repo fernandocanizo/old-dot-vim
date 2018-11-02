@@ -108,6 +108,12 @@ let g:syntastic_javascript_eslint_exec = '/bin/true'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npx eslint '
 
+" trying a different linter also doesn't work -> It won't work
+" Syntastic needs a parser for the output of each linter, it needs to be aware of it
+" Issue requesting lynt https://github.com/vim-syntastic/syntastic/issues/2228
+"let g:syntastic_javascript_checkers = ['lynt']
+"let g:syntastic_javascript_eslint_exe = 'npx lynt '
+
 " use tidy-html5
 let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy5'
 " Syntastic configuration ends
