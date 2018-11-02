@@ -69,6 +69,9 @@ call vundle#begin()
 	" 2017.10.24 EJS (embedded javascript syntax)
 	Plugin 'nikvdp/ejs-syntax'
 
+	" 2018.11.02 ALE Asynchronous Lint Engine: like Syntastic but as you type
+	Plugin 'https://github.com/w0rp/ale'
+
 call vundle#end()
 
 " Disable double quotes concealing by elzr/vim-json plugin
