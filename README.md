@@ -1,5 +1,7 @@
 # dot-vim
 
+**Note: archiving this repo as I'm not using it anymore.**
+
 My configuration files for [Vim](http://www.vim.org/).
 
 Includes `~/.vim` directory and `~/.vimrc` as `~/.vim/vimrc` which I link at `$HOME` when bringing in configuration to new machines:
